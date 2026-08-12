@@ -35,35 +35,21 @@ namespace T1B3Livraria.Desktop.Services
             return await _http.GetAsync<BookResponseDto>($"/api/books/{id}");
         }
 
-        /// <summary>
-        /// Cria um novo book via POST /api/books.
-        /// Requer perfil Admin (verificado pela API).
-        /// </summary>
-        /// <param name="dto">Dados do book a ser criado</param>
-        /// <returns>Book criado ou null em caso de erro</returns>
         public async Task<(bool Success, BookResponseDto? Book, string ErrorMessage)>
             CreateAsync(CreateBookDto dto)
         {
-            return await _http.PostAsync<GameResponseDto>("/api/games", dto);
+            return await _http.PostAsync<BookResponseDto>("/api/books", dto);
         }
 
-        /// <summary>
-        /// Atualiza um game existente via PUT /api/games/{id}.
-        /// Requer perfil Admin (verificado pela API).
-        /// </summary>
-        public async Task<(bool Success, GameResponseDto? Game, string ErrorMessage)>
-            UpdateAsync(int id, UpdateGameDto dto)
+        public async Task<(bool Success, BookResponseDto? Book, string ErrorMessage)>
+            UpdateAsync(int id, UpdateBookDto dto)
         {
-            return await _http.PutAsync<GameResponseDto>($"/api/games/{id}", dto);
+            return await _http.PutAsync<BookResponseDto>($"/api/books/{id}", dto);
         }
 
-        /// <summary>
-        /// Exclui um game via DELETE /api/games/{id}.
-        /// Requer perfil Admin (verificado pela API).
-        /// </summary>
         public async Task<(bool Success, string ErrorMessage)> DeleteAsync(int id)
         {
-            return await _http.DeleteAsync($"/api/games/{id}");
+            return await _http.DeleteAsync($"/api/books/{id}");
         }
     }
 }
