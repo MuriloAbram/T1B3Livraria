@@ -11,8 +11,8 @@ namespace T1B3Livraria.Domain.Entities
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Autor { get; set; } = string.Empty;
-        public int Editora { get; set; }
-        public string AnoPublicacao { get; set; } = string.Empty;
+        public string Editora { get; set; } = string.Empty;
+        public int AnoPublicacao { get; set; }
         public int CategoryId { get; set; }
         public bool IsFeatured { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
