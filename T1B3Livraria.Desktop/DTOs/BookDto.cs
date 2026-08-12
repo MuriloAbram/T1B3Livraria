@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace T1B3Livraria.Desktop.DTOs
 {
-    public class BookDto
+    public class BookResponseDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
