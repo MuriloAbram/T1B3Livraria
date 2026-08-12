@@ -13,4 +13,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
