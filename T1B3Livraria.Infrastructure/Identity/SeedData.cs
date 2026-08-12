@@ -43,7 +43,7 @@ namespace T1B3Livraria.Infrastructure.Identity
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            var adminEmail = "admin@senacgames.com";
+            var adminEmail = "admin@livraria.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
             if (adminUser == null)

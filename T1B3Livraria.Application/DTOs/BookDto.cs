@@ -18,4 +18,22 @@ namespace T1B3Livraria.Application.DTOs
         public bool IsFeatured { get; set; }
         public DateTime CreatedAt { get; set; }
     }
+    public class CreateBookDto
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Autor { get; set; } = string.Empty;
+        public string Editora { get; set; } = string.Empty;
+        public int AnoPublicacao { get; set; }
+        public int CategoryId { get; set; }
+        public bool IsFeatured { get; set; }
+    }
+    public class UpdateBookDto
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Autor { get; set; } = string.Empty;
+        public string Editora { get; set; } = string.Empty;
+        public int CategoryId { get; set; }
+        public int AnoPublicacao { get; set; }
+        public bool IsFeatured { get; set; }
+    }
 }
