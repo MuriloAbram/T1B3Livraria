@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="T1B3Livraria.API/T1B3Livraria.API.csproj" />
+  <Project Path="T1B3Livraria.Application/T1B3Livraria.Application.csproj" />
+  <Project Path="T1B3Livraria.Desktop/T1B3Livraria.Desktop.csproj" />
+  <Project Path="T1B3Livraria.Domain/T1B3Livraria.Domain.csproj" />
+  <Project Path="T1B3Livraria.Infrastructure/T1B3Livraria.Infrastructure.csproj" />
+</Solution>
