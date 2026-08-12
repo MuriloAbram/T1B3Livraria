@@ -5,22 +5,7 @@ using T1B3Livraria.Application.DTOs;
 
 
 namespace T1B3Livraria.API.Controllers
-// =============================================================================
-// SenacGames.API - AuthController
-// =============================================================================
-//  CONCEITO IMPORTANTE: Autenticação na API
-// Este controller demonstra como implementar autenticação usando
-// ASP.NET Core Identity compartilhado com a aplicação MVC.
-//
-// Inicialmente utiliza autenticação baseada em Cookies para simplificar.
-// Em projetos reais de API, seria comum usar JWT (JSON Web Tokens).
-//
-// Endpoints:
-// POST /api/auth/register  Registra um novo usuário
-// POST /api/auth/login     Faz login (cria cookie de autenticação)
-// POST /api/auth/logout    Faz logout (remove cookie)
-// GET  /api/auth/me        Retorna dados do usuário autenticado
-// =============================================================================
+
 {
     [ApiController]
     [Route("api/[controller]")]
