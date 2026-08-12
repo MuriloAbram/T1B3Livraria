@@ -14,8 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forms\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Themes\" />
     <Folder Include="Services\" />
   </ItemGroup>
