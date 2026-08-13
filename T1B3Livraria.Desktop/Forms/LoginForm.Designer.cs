@@ -35,8 +35,8 @@ namespace T1B3Livraria.Desktop.Forms
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -49,8 +49,6 @@ namespace T1B3Livraria.Desktop.Forms
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlBrand = new Guna.UI2.WinForms.Guna2Panel();
             pictureBox1 = new PictureBox();
             lblAppName = new Label();
@@ -62,15 +60,13 @@ namespace T1B3Livraria.Desktop.Forms
             lblTitle = new Label();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            lblRole = new Label();
-            cmbRole = new Guna.UI2.WinForms.Guna2ComboBox();
             btnSubmit = new Guna.UI2.WinForms.Guna2Button();
             btnToggleMode = new Guna.UI2.WinForms.Guna2Button();
+            label1 = new Label();
             lblStatus = new Label();
             dragControl = new Guna.UI2.WinForms.Guna2DragControl(components);
             shadowForm = new Guna.UI2.WinForms.Guna2ShadowForm(components);
             borderForm = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            label1 = new Label();
             pnlBrand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlContent.SuspendLayout();
@@ -92,7 +88,6 @@ namespace T1B3Livraria.Desktop.Forms
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Imagem_gerada__Livro_digital_com_circuitos_e_pixels;
             pictureBox1.Location = new Point(81, 70);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(159, 132);
@@ -130,17 +125,15 @@ namespace T1B3Livraria.Desktop.Forms
             pnlContent.Controls.Add(lblTitle);
             pnlContent.Controls.Add(txtUsername);
             pnlContent.Controls.Add(txtPassword);
-            pnlContent.Controls.Add(lblRole);
-            pnlContent.Controls.Add(cmbRole);
             pnlContent.Controls.Add(btnSubmit);
             pnlContent.Controls.Add(btnToggleMode);
             pnlContent.Controls.Add(label1);
             pnlContent.Controls.Add(lblStatus);
-            pnlContent.CustomizableEdges = customizableEdges17;
+            pnlContent.CustomizableEdges = customizableEdges15;
             pnlContent.Dock = DockStyle.Fill;
             pnlContent.Location = new Point(320, 0);
             pnlContent.Name = "pnlContent";
-            pnlContent.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            pnlContent.ShadowDecoration.CustomizableEdges = customizableEdges16;
             pnlContent.Size = new Size(480, 450);
             pnlContent.TabIndex = 1;
             // 
@@ -151,7 +144,7 @@ namespace T1B3Livraria.Desktop.Forms
             lblCred.ForeColor = Color.Silver;
             lblCred.Location = new Point(40, 80);
             lblCred.Name = "lblCred";
-            lblCred.Size = new Size(190, 15);
+            lblCred.Size = new Size(240, 20);
             lblCred.TabIndex = 8;
             lblCred.Text = "Insira suas credenciais para acessar";
             // 
@@ -200,6 +193,7 @@ namespace T1B3Livraria.Desktop.Forms
             txtUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 23, 235);
             txtUsername.Location = new Point(40, 105);
+            txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "👨‍💼 User E-mail";
             txtUsername.SelectedText = "";
@@ -216,6 +210,7 @@ namespace T1B3Livraria.Desktop.Forms
             txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 23, 235);
             txtPassword.Location = new Point(40, 160);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderText = "🔒 Password";
@@ -224,63 +219,42 @@ namespace T1B3Livraria.Desktop.Forms
             txtPassword.Size = new Size(400, 42);
             txtPassword.TabIndex = 3;
             // 
-            // lblRole
-            // 
-            lblRole.BackColor = Color.Transparent;
-            lblRole.ForeColor = Color.Gray;
-            lblRole.Location = new Point(40, 212);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(120, 20);
-            lblRole.TabIndex = 4;
-            lblRole.Text = "Perfil:";
-            lblRole.Visible = false;
-            // 
-            // cmbRole
-            // 
-            cmbRole.BackColor = Color.Transparent;
-            cmbRole.BorderRadius = 8;
-            cmbRole.CustomizableEdges = customizableEdges11;
-            cmbRole.DrawMode = DrawMode.OwnerDrawFixed;
-            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRole.FocusedColor = Color.Empty;
-            cmbRole.Font = new System.Drawing.Font("Segoe UI", 10F);
-            cmbRole.ForeColor = Color.FromArgb(68, 88, 112);
-            cmbRole.ItemHeight = 30;
-            cmbRole.Items.AddRange(new object[] { "Reader", "Admin", "Operator" });
-            cmbRole.Location = new Point(40, 235);
-            cmbRole.Name = "cmbRole";
-            cmbRole.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            cmbRole.Size = new Size(400, 36);
-            cmbRole.StartIndex = 0;
-            cmbRole.TabIndex = 4;
-            cmbRole.Visible = false;
-            // 
             // btnSubmit
             // 
             btnSubmit.BorderRadius = 8;
-            btnSubmit.CustomizableEdges = customizableEdges13;
+            btnSubmit.CustomizableEdges = customizableEdges11;
             btnSubmit.Font = new System.Drawing.Font("Segoe UI", 9F);
             btnSubmit.ForeColor = Color.White;
-            btnSubmit.Location = new Point(40, 290);
+            btnSubmit.Location = new Point(40, 260);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnSubmit.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnSubmit.Size = new Size(400, 45);
             btnSubmit.TabIndex = 5;
             btnSubmit.Text = "Entrar";
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // btnToggleMode
             // 
             btnToggleMode.BackColor = Color.Transparent;
-            btnToggleMode.CustomizableEdges = customizableEdges15;
+            btnToggleMode.CustomizableEdges = customizableEdges13;
             btnToggleMode.FillColor = Color.Transparent;
             btnToggleMode.Font = new System.Drawing.Font("Segoe UI", 9F);
             btnToggleMode.ForeColor = Color.FromArgb(94, 23, 235);
             btnToggleMode.Location = new Point(40, 345);
             btnToggleMode.Name = "btnToggleMode";
-            btnToggleMode.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnToggleMode.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnToggleMode.Size = new Size(400, 30);
             btnToggleMode.TabIndex = 6;
-            btnToggleMode.Text = "Não tem uma conta? Cadastre-se";
+            btnToggleMode.Text = "Não tem uma conta? Problema seu!\r\n";
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Transparent;
+            label1.Location = new Point(40, 378);
+            label1.Name = "label1";
+            label1.Size = new Size(400, 30);
+            label1.TabIndex = 7;
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblStatus
             // 
@@ -303,15 +277,6 @@ namespace T1B3Livraria.Desktop.Forms
             borderForm.ContainerControl = this;
             borderForm.DockIndicatorTransparencyValue = 0.6D;
             borderForm.TransparentWhileDrag = true;
-            // 
-            // label1
-            // 
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(40, 378);
-            label1.Name = "label1";
-            label1.Size = new Size(400, 30);
-            label1.TabIndex = 7;
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LoginForm
             // 
@@ -341,8 +306,6 @@ namespace T1B3Livraria.Desktop.Forms
         private System.Windows.Forms.Label lblTitle;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
-        private System.Windows.Forms.Label lblRole;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbRole;
         private Guna.UI2.WinForms.Guna2Button btnSubmit;
         private Guna.UI2.WinForms.Guna2Button btnToggleMode;
         private System.Windows.Forms.Label lblStatus;

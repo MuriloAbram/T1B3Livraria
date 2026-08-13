@@ -19,11 +19,6 @@ namespace T1B3Livraria.Desktop.DTOs
         public DateTime CreatedAt { get; set; }
     }
 
-    /// <summary>
-    /// DTO para criação de um novo Game.
-    /// Contém apenas os campos que o usuário precisa preencher.
-    /// Note que Id e CreatedAt NÃO estão aqui — são gerados automaticamente.
-    /// </summary>
     public class CreateBookDto
     {
         public string Title { get; set; } = string.Empty;
@@ -34,9 +29,6 @@ namespace T1B3Livraria.Desktop.DTOs
         public bool IsFeatured { get; set; }
     }
 
-    /// <summary>
-    /// DTO para atualização de um Game existente.
-    /// </summary>
     public class UpdateBookDto
     {
         public string Title { get; set; } = string.Empty;
