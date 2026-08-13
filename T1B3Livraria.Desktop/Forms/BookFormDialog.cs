@@ -1,26 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using T1B3Livraria.Desktop.DTOs;
+using T1B3Livraria.Desktop.Helpers;
 
 namespace T1B_3Library.Desktop.Forms
 {
     public partial class BookFormDialog : Form
     {
-        // ============================================================
-        // PROPRIEDADES
-        // ============================================================
         public CreateBookDto? BookDto { get; private set; }
         public UpdateBookDto? UpdateDto { get; private set; }
 
-        // ============================================================
-        // CONTROLE DO MODO DO FORMULÁRIO E DTOS
-        // ============================================================
         private List<CategoriaResponseDto> _categorias = new();
-        private BookResponseDto? _bookExistente;
+        private readonly BookResponseDto? _bookExistente;
 
-        // ============================================================
-        // CONSTRUTOR - NOVO CADASTRO
-        // ============================================================
         public BookFormDialog()
         {
             InitializeComponent();
@@ -28,13 +24,70 @@ namespace T1B_3Library.Desktop.Forms
 
         public BookFormDialog(List<CategoriaResponseDto> categorias, BookResponseDto? book)
         {
+            InitializeComponent();
             _categorias = categorias ?? new List<CategoriaResponseDto>();
             _bookExistente = book;
-            InitializeComponent();
         }
-        // ============================================================
-        // CONSTRUTOR - EDIÇÃO
-        // ============================================================
+
+        private async void BookFormDialog_Load(object sender, EventArgs e)
+        {
+            if (DesignMode) return;
+
+            this.Text = _bookExistente == null ? "Novo Livro" : "Editar Livro";
+            lblTituloForm.Text = _bookExistente == null ? "➕ Novo Livro" : "✏️ Editar Livro";
+
+            // Se a lista veio vazia, busca direto da API
+            if (_categorias == null || _categorias.Count == 0)
+            {
+                await CarregarCategoriasDaApiAsync();
+            }
+            else
+            {
+                PopularComboBox();
+            }
+
+            PreencherCampos();
+        }
+
+        private async Task CarregarCategoriasDaApiAsync()
+        {
+            try
+            {
+                var baseUrl = ApiEndpointResolver.Resolve();
+                using var client = new HttpClient { BaseAddress = new Uri(baseUrl) };
+
+                var response = await client.GetAsync("api/Categories");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<List<CategoriaResponseDto>>();
+                    if (result != null) _categorias = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Erro ao carregar categorias: {ex.Message}");
+            }
+            finally
+            {
+                PopularComboBox();
+            }
+        }
+
+        private void PopularComboBox()
+        {
+            cmbCategoria.Items.Clear();
+            cmbCategoria.Items.Add("Selecione uma categoria...");
+
+            if (_categorias != null)
+            {
+                foreach (var cat in _categorias)
+                {
+                    cmbCategoria.Items.Add(cat.Name);
+                }
+            }
+
+            cmbCategoria.SelectedIndex = 0;
+        }
 
         private void PreencherCampos()
         {
@@ -46,66 +99,30 @@ namespace T1B_3Library.Desktop.Forms
             txtAno.Text = _bookExistente.AnoPublicacao.ToString();
             chkDestaque.Checked = _bookExistente.IsFeatured;
 
-            var idx = _categorias.FindIndex(c => c.Id == _bookExistente.CategoryId);
-            if (idx >= 0) cmbCategoria.SelectedIndex = idx + 1;
-
+            if (_categorias.Count > 0)
+            {
+                var idx = _categorias.FindIndex(c => c.Id == _bookExistente.CategoryId);
+                if (idx >= 0) cmbCategoria.SelectedIndex = idx + 1;
+            }
         }
 
-        // ============================================================
-        // CARREGAMENTO DO FORMULÁRIO E CATEGORIAS
-        // ============================================================
-        private void BookFormDialog_Load(object sender, EventArgs e)
-        {
-            //Guard
-            if (DesignMode) return;
-
-            // Configura título baseado no modo (criação/edição)
-            this.Text = _bookExistente == null ? "Novo Livro" : "Editar Livro";
-            lblTituloForm.Text = _bookExistente == null ? "➕ Novo Livro" : "✏️ Editar Livro";
-
-            //Popula o ComboBox de categorias
-            cmbCategoria.Items.Clear();
-            cmbCategoria.Items.Add("Selecione uma categoria...");
-            foreach (var cat in _categorias)
-                cmbCategoria.Items.Add(cat.Name);
-            cmbCategoria.SelectedIndex = 0;
-
-            //Preenche campos se estiver no modo edição
-            PreencherCampos();
-        }
-
-        // ============================================================
-        // BOTÃO SALVAR
-        // ============================================================
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTitulo.Text))
             {
-                MessageBox.Show(
-                    "Informe o título do Livro.",
-                    "Validação",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                MessageBox.Show("Informe o título do Livro.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!int.TryParse(txtAno.Text, out int ano) || ano < 1970 || ano > DateTime.Now.Year + 2)
+            if (!int.TryParse(txtAno.Text, out int ano) || ano < 1500 || ano > DateTime.Now.Year + 2)
             {
-                MessageBox.Show(
-                 "Informe um ano válido.",
-                 "Validação",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning);
+                MessageBox.Show("Informe um ano válido.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (cmbCategoria.SelectedIndex <= 0)
+            if (cmbCategoria.SelectedIndex <= 0 || _categorias.Count == 0)
             {
-                MessageBox.Show(
-                 "Selecione uma categoria",
-                 "Validação",
-                 MessageBoxButtons.OK,
-                 MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione uma categoria.", "Validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -119,7 +136,7 @@ namespace T1B_3Library.Desktop.Forms
                     Title = txtTitulo.Text.Trim(),
                     Autor = txtAutor.Text.Trim(),
                     AnoPublicacao = ano,
-                    Editora = txtEditora.Text,
+                    Editora = txtEditora.Text.Trim(),
                     CategoryId = categoriaId,
                     IsFeatured = chkDestaque.Checked
                 };
@@ -141,11 +158,9 @@ namespace T1B_3Library.Desktop.Forms
             this.Close();
         }
 
-        // ============================================================
-        // BOTÃO CANCELAR
-        // ============================================================
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
